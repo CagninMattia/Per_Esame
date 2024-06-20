@@ -16,6 +16,9 @@ class Controller:
         nazioni = self._model.get_nazioni()
         for c in nazioni:
             self._view.ddcountry.options.append(ft.dropdown.Option(c))
+            # Con data= rimane oggetto
+            # Con key= si trasforma in stringa
+            # Con text= Scriviamo quello che vogliamo vedere all'interno della DD
 
     # Serie di comandi per gestire la pressione del pulsante
     def handle_graph(self, e):
