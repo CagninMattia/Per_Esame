@@ -45,3 +45,18 @@ def get_nodi_da_stampare(self):
     return archi, common_products
 
 
+
+
+""" Calcolo distanza coordinate due punti, qui avevo salvato in un dizionario le 
+    chiave: nodo e come valore una lista contenete lat e lng"""
+
+from geopy import distance
+def dist(self, a1, a2):
+    lat1 = self.diz_archi[a1][0]
+    lon1 = self.diz_archi[a1][1]
+    lat2 = self.diz_archi[a2][0]
+    lon2 = self.diz_archi[a2][1]
+    d = distance.geodesic((lat1, lon1), (lat2, lon2)).km
+    return d
+
+

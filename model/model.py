@@ -18,6 +18,8 @@ class Model:
 
     def crea_grafo(self, nazione, anno):
         self.grafo.clear()
+        # Cancello diz o liste se le ho inizializzate se uno schiacca due volte pulsante non ci sono problemi
+        self.diz_vertici.clear()
         retailers = DAO.get_vertici(nazione)
         for r in retailers:
             self.diz_vertici[r.Retailer_code] = r

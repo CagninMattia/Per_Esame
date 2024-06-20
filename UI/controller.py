@@ -25,7 +25,13 @@ class Controller:
         anno = self._view.ddyear.value
         nazione = self._view.ddcountry.value
         if anno is not None and nazione is not None:
-            int(anno)
+            try:
+                anno = int(anno)
+            except ValueError:
+                self._view.txtOut3.controls.clear()
+                self._view.create_alert("Inserisci un numero intero. ")
+                self._view.update_page()
+                return
             self._view.txt_result.controls.clear()
             self._view.update_page()
             self._model.crea_grafo(nazione, anno)
@@ -55,13 +61,13 @@ class Controller:
         self._view.update_page()
         # Controllo per intero
         try:
-            int(numero)
+            numero = int(numero)
         except ValueError:
             self._view.txtOut3.controls.clear()
             self._view.create_alert("Inserisci un numero intero. ")
             self._view.update_page()
             return
-        costo, ciclo_lista = self._model.get_ciclo_max(int(numero))
+        costo, ciclo_lista = self._model.get_ciclo_max(numero)
         lista_archi = self._model.get_ciclo_archi(ciclo_lista)
         self._view.txtOut3.controls.append(ft.Text(f"Peso cammino massimo: {costo}"))
         for n in lista_archi:
