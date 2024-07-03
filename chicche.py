@@ -30,12 +30,34 @@ def get_nodi_da_stampare(self):
         archi.append([prod1, prod2, weight])
 
     # Find common products
+    # Inizializza la lista dei prodotti
     products = []
-    for edge in top_edges:
-        products.extend([edge[0].Product_number, edge[1].Product_number])
 
-    product_counts = Counter(products)
-    common_products = [product for product, count in product_counts.items() if count > 1]
+    # Itera su ogni arco in top_edges
+    for edge in top_edges:
+        # Aggiungi il Product_number del primo nodo dell'arco alla lista dei prodotti
+        products.append(edge[0].Product_number)
+        # Aggiungi il Product_number del secondo nodo dell'arco alla lista dei prodotti
+        products.append(edge[1].Product_number)
+
+    # Crea un dizionario per contare le occorrenze di ciascun prodotto
+    product_counts = {}
+
+    # Itera su ogni prodotto nella lista dei prodotti
+    for product in products:
+        if product in product_counts:
+            product_counts[product] += 1
+        else:
+            product_counts[product] = 1
+
+    # Inizializza la lista dei prodotti comuni
+    common_products = []
+
+    # Itera su ogni prodotto e il suo conteggio nel dizionario product_counts
+    for product, count in product_counts.items():
+        # Se il prodotto appare più di una volta, aggiungilo alla lista dei prodotti comuni
+        if count > 1:
+            common_products.append(product)
 
     # Print common products
     print("Common products in top 3 edges:", common_products)
