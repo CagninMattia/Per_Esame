@@ -84,6 +84,7 @@ def dist(self, a1, a2):
 """
 Trovo nodi visitabili attraverso DFS 
 """
+import networkx as nx
 def get_nodi_visitabili(self, stato):
     st = None
     for s in self.lista_stati:
@@ -94,4 +95,36 @@ def get_nodi_visitabili(self, stato):
     visitabili.remove(st)  # Rimuovi lo stato stesso dalla lista
     return visitabili
 
+"""
+Si definisca come “volume di vendita” di un retailer la somma dei pesi di tutti gli archi ad esso incidenti. Si 
+visualizzi l’intero elenco di retailer, ordinati per valore decrescente. In questo elenco visualizzare il nome del 
+retailer ed il valore del volume di vendita corrispondente
+"""
+def get_retailers_ordinati(self):
+    # 1. Calcolare il volume di vendita per ogni retailer
+    volumi_vendita = {}
 
+    # Itera su ogni nodo del grafo
+    for node in self.grafo.nodes:
+        volumi_vendita[node] = 0  # Inizializza il volume di vendita a 0
+
+    # Itera su ogni arco del grafo
+    for edge in self.grafo.edges(data=True):
+        retailer1, retailer2, data = edge
+        weight = data['weight']
+        # Aggiungi il peso dell'arco al volume di vendita di ciascun retailer
+        volumi_vendita[retailer1] += weight
+        volumi_vendita[retailer2] += weight
+
+    # 2. Creare un elenco di retailer con i loro volumi di vendita
+    elenco_retailer = []
+
+    # Itera su ogni nodo e volume di vendita nel dizionario
+    for retailer, volume in volumi_vendita.items():
+        # Aggiungi una tupla con il retailer e il volume di vendita all'elenco
+        elenco_retailer.append((retailer, volume))
+
+    # 3. Ordinare l'elenco in ordine decrescente per volume di vendita
+    elenco = sorted(elenco_retailer, key=lambda x: x[1], reverse=True)
+
+    return elenco
