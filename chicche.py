@@ -67,8 +67,10 @@ def get_nodi_da_stampare(self):
 
 
 
-""" Calcolo distanza coordinate due punti, qui avevo salvato in un dizionario le 
-    chiave: nodo e come valore una lista contenete lat e lng"""
+""" 
+Calcolo distanza coordinate due punti, qui avevo salvato in un dizionario le 
+chiave: nodo e come valore una lista contenete lat e lng
+"""
 
 from geopy import distance
 def dist(self, a1, a2):
