@@ -59,4 +59,17 @@ def dist(self, a1, a2):
     d = distance.geodesic((lat1, lon1), (lat2, lon2)).km
     return d
 
+"""
+Trovo nodi visitabili attraverso DFS 
+"""
+def get_nodi_visitabili(self, stato):
+    st = None
+    for s in self.lista_stati:
+        if s.StateNme == stato:
+            st = s
+    albero = nx.dfs_tree(self.grafo, st)
+    visitabili = list(albero.nodes)
+    visitabili.remove(st)  # Rimuovi lo stato stesso dalla lista
+    return visitabili
+
 
