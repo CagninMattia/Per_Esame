@@ -1,5 +1,3 @@
-from collections import Counter
-
 """Stampare:
 i. Sull’area di testo con id txtResGrafo il numero di vertici ed archi 
 ii. Sull’area di testo con id txtArchi, i tre archi di peso maggiore (seguendo la convenzione 
