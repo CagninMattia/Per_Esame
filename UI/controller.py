@@ -26,7 +26,10 @@ class Controller:
         nazione = self._view.ddcountry.value
         if anno is not None and nazione is not None:
             try:
-                anno = int(anno)
+                # Se float
+                anno.replace(",", ".")
+                anno = float(anno)
+                #anno = int(anno)
             except ValueError:
                 self._view.txtOut3.controls.clear()
                 self._view.create_alert("Inserisci un numero intero. ")
